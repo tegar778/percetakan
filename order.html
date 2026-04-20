@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesanan Baru - Percetakan Cepat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-print"></i>
+                <span>Percetakan Cepat</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="order.html" class="nav-item active">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Pesanan Baru</span>
+                </a>
+                <a href="riwayat.html" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>Riwayat</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <h1>Buat Pesanan Baru</h1>
+            </div>
+
+            <div class="order-layout">
+                <!-- Form Input Pesanan -->
+                <div class="order-form-card">
+                    <h2><i class="fas fa-file-alt"></i> Data Pesanan</h2>
+                    <div class="form-group">
+                        <label>Nama Pelanggan</label>
+                        <input type="text" id="namaPelanggan" placeholder="Masukkan nama pelanggan">
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor HP</label>
+                        <input type="tel" id="nomorHp" placeholder="Masukkan nomor HP">
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Layanan</label>
+                        <select id="jenisLayanan">
+                            <option value="Banner">Banner</option>
+                            <option value="Nota">Nota</option>
+                            <option value="Stiker">Stiker</option>
+                            <option value="Undangan">Undangan</option>
+                            <option value="Flyer">Flyer</option>
+                            <option value="Kartu Nama">Kartu Nama</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ukuran Cetak</label>
+                        <input type="text" id="ukuran" placeholder="Contoh: A3, 60x40 cm">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Jumlah</label>
+                            <input type="number" id="jumlah" value="1" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Harga per Item</label>
+                            <input type="number" id="harga" placeholder="Harga satuan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Item: <span id="previewTotal">Rp 0</span></label>
+                    </div>
+                    <button class="btn-primary" id="tambahKeranjangBtn">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+
+                <!-- Keranjang Pesanan -->
+                <div class="cart-card">
+                    <h2><i class="fas fa-shopping-basket"></i> Keranjang Pesanan</h2>
+                    <div class="cart-items" id="cartItems">
+                        <div class="empty-cart">Keranjang masih kosong</div>
+                    </div>
+                    <div class="cart-summary">
+                        <div class="total-row">
+                            <span>Total Keseluruhan:</span>
+                            <span class="grand-total" id="grandTotal">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Pembayaran -->
+                    <div class="payment-section">
+                        <h3><i class="fas fa-credit-card"></i> Pembayaran</h3>
+                        <div class="form-group">
+                            <label>Metode Pembayaran</label>
+                            <select id="metodeBayar">
+                                <option value="Cash">Cash</option>
+                                <option value="Transfer">Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Uang Bayar</label>
+                            <input type="number" id="uangBayar" placeholder="Masukkan jumlah pembayaran">
+                        </div>
+                        <div class="form-group">
+                            <label>Kembalian: <span id="kembalian">Rp 0</span></label>
+                        </div>
+                        <button class="btn-success" id="simpanTransaksiBtn">
+                            <i class="fas fa-save"></i> Simpan Transaksi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

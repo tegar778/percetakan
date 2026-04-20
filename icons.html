@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icon Percetakan</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a56db;
+        }
+        .canvas-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-size: 12px;
+        }
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        <h2>Icon 512x512</h2>
+        <canvas id="icon512" width="512" height="512"></canvas>
+        <br>
+        <button onclick="downloadIcon(512)">Download Icon 512x512</button>
+        <button onclick="generateAllIcons()">Generate All Icons</button>
+    </div>
+    
+    <div class="canvas-container">
+        <h3>Base64 Data (Copy ke file icons.js)</h3>
+        <textarea id="base64data" readonly></textarea>
+    </div>
+
+    <script>
+        function drawIcon(ctx, size) {
+            const center = size/2;
+            const radius = size * 0.35;
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#1a56db');
+            gradient.addColorStop(1, '#1e40af');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Rounded rectangle background
+            ctx.fillStyle = 'white';
+            ctx.shadowBlur = size * 0.05;
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.fillRect(size*0.1, size*0.1, size*0.8, size*0.8);
+            ctx.shadowBlur = 0;
+            
+            // Printer icon
+            ctx.fillStyle = '#1a56db';
+            // Body printer
+            ctx.fillRect(size*0.25, size*0.4, size*0.5, size*0.35);
+            // Top part
+            ctx.fillRect(size*0.3, size*0.25, size*0.4, size*0.15);
+            // Paper coming out
+            ctx.fillStyle = '#e5e7eb';
+            ctx.fillRect(size*0.35, size*0.75, size*0.3, size*0.1);
+            // Details
+            ctx.fillStyle = '#374151';
+            for(let i = 0; i < 3; i++) {
+                ctx.fillRect(size*0.3 + i*size*0.12, size*0.5, size*0.05, size*0.15);
+            }
+            
+            // Text
+            ctx.font = `bold ${size*0.08}px Arial`;
+            ctx.fillStyle = '#1e40af';
+            ctx.fillText("CETAK", size*0.25, size*0.9);
+        }
+        
+        function downloadIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            drawIcon(ctx, size);
+            
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        function generateAllIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            const icons = {};
+            
+            sizes.forEach(size => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                drawIcon(ctx, size);
+                icons[`icon-${size}`] = canvas.toDataURL();
+            });
+            
+            document.getElementById('base64data').value = JSON.stringify(icons, null, 2);
+            alert('Base64 data generated! Copy ke file icons.js');
+        }
+        
+        // Draw preview
+        drawIcon(document.getElementById('icon512').getContext('2d'), 512);
+    </script>
+</body>
+</html>

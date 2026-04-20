@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota - Percetakan Cepat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            .no-print {
+                display: none;
+            }
+            .nota-container {
+                margin: 0;
+                padding: 10px;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nota-wrapper">
+        <div class="nota-container" id="notaContainer">
+            <div class="nota-header">
+                <i class="fas fa-print" style="font-size: 32px;"></i>
+                <h2>PERCETAKAN CEPAT</h2>
+                <p>Jl. Contoh No. 123, Kota Contoh</p>
+                <p>Telp: 0812-3456-7890</p>
+                <p id="notaTanggal"></p>
+                <p id="notaNoTransaksi"></p>
+                <p id="notaPelanggan"></p>
+                <hr>
+            </div>
+            <div class="nota-body">
+                <table class="nota-table">
+                    <thead>
+                        <tr><th>Item</th><th>Qty</th><th>Harga</th><th>Subtotal</th></tr>
+                    </thead>
+                    <tbody id="notaItems"></tbody>
+                </table>
+                <hr>
+                <div class="nota-total">
+                    <p><strong>Total: <span id="notaGrandTotal"></span></strong></p>
+                    <p>Metode Bayar: <span id="notaMetode"></span></p>
+                    <p>Bayar: <span id="notaBayar"></span></p>
+                    <p>Kembali: <span id="notaKembali"></span></p>
+                </div>
+                <hr>
+                <div class="nota-footer">
+                    <p>Terima kasih atas kunjungan Anda!</p>
+                    <p>~ Barang yang sudah dibeli tidak dapat dikembalikan ~</p>
+                </div>
+            </div>
+        </div>
+        <div class="no-print" style="text-align: center; margin-top: 20px;">
+            <button class="btn-primary" onclick="window.print()">
+                <i class="fas fa-print"></i> Cetak Nota
+            </button>
+            <button class="btn-secondary" onclick="window.location.href='riwayat.html'">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
