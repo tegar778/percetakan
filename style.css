@@ -454,27 +454,6 @@ body {
     }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 70px;
-    }
-    .sidebar .logo span,
-    .sidebar .nav-item span {
-        display: none;
-    }
-    .main-content {
-        margin-left: 70px;
-    }
-    .order-layout {
-        grid-template-columns: 1fr;
-    }
-    .cart-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-}
-
 /* PWA Styles */
 @keyframes slideUp {
     from {
@@ -559,68 +538,6 @@ body {
     transform: translateY(0);
 }
 
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .stat-card {
-        padding: 15px;
-    }
-    
-    .stat-info h3 {
-        font-size: 22px;
-    }
-    
-    .btn-primary, .btn-success, .btn-secondary {
-        padding: 10px 20px;
-        font-size: 13px;
-    }
-    
-    .top-bar {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-    
-    .order-layout {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    
-    .cart-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-    
-    .cart-item-header {
-        display: none;
-    }
-    
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-    }
-}
-
-/* Touch Optimization untuk Mobile */
-@media (hover: none) and (pointer: coarse) {
-    button, .nav-item, .stat-card {
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-    }
-    
-    button:active, .nav-item:active {
-        transform: scale(0.98);
-    }
-    
-    input, select {
-        font-size: 16px; /* Prevent zoom on focus */
-    }
-}
-
 /* Loading Animation */
 .btn-loading {
     position: relative;
@@ -667,4 +584,204 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #1e40af;
+}
+
+/* Touch Optimization untuk Mobile */
+@media (hover: none) and (pointer: coarse) {
+    button, .nav-item, .stat-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button:active, .nav-item:active {
+        transform: scale(0.98);
+    }
+
+    input, select {
+        font-size: 16px; /* Prevent zoom on focus */
+    }
+}
+
+/* ======================================
+   RESPONSIVE MOBILE ANDROID FRIENDLY
+   Sidebar berubah jadi Bottom Navbar
+====================================== */
+@media (max-width: 600px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+        padding-bottom: 90px; /* biar aman tidak ketutup navbar bawah */
+    }
+
+    /* Sidebar jadi bottom navigation */
+    .sidebar {
+        width: 100%;
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        z-index: 999;
+        overflow: hidden;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 8px;
+        margin: 0;
+        border-radius: 0;
+        font-size: 11px;
+        gap: 4px;
+    }
+
+    .nav-item span {
+        display: block;
+        font-size: 10px;
+    }
+
+    .nav-item i {
+        font-size: 20px;
+    }
+
+    .nav-item:hover {
+        transform: none;
+    }
+
+    /* Topbar lebih rapi */
+    .top-bar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        text-align: center;
+    }
+
+    /* Statistik jadi 1 kolom */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .stat-info h3 {
+        font-size: 22px;
+    }
+
+    /* Form layout jadi 1 kolom */
+    .order-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Tombol full width biar enak ditekan */
+    .btn-primary,
+    .btn-success,
+    .btn-secondary {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Cart item jadi card style */
+    .cart-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 12px;
+        border-radius: 12px;
+        background: #f9fafb;
+        margin-bottom: 10px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .cart-item input {
+        width: 100%;
+    }
+
+    /* Header cart hilang */
+    .cart-item-header {
+        display: none;
+    }
+
+    /* Total lebih rapi */
+    .total-row {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .grand-total {
+        font-size: 22px;
+    }
+
+    /* Table dibuat scroll lebih nyaman */
+    .table-container {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    /* Modal lebih pas layar HP */
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+        border-radius: 14px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .modal-footer button {
+        width: 100%;
+    }
+
+    /* Nota lebih kecil */
+    .nota-wrapper {
+        max-width: 100%;
+        margin: 10px;
+    }
+
+    .nota-container {
+        padding: 14px;
+    }
 }
